@@ -1,6 +1,6 @@
 {% extends "layout.html" %}{% block title %} Login {% endblock %} {% block
 content %}
-<div class="content-section">
+<div>
   <form method="POST" action="">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
@@ -35,7 +35,7 @@ content %}
       </div>
     </fieldset>
     <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info") }}
+      {{ form.submit(class="btn btn-primary") }}
     </div>
     <small class="text-muted ml-2">
       <a href="#">Forgot Password?</a>
@@ -44,8 +44,8 @@ content %}
 </div>
 <div class="border-top pt-3">
   <small class="text-muted">
-    Need An Account?
-    <a class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+    Don't Have An Account?
+    <a class="ml-2" href="{{ url_for('register') }}">Register</a>
   </small>
 </div>
 {% endblock content %}

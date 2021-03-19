@@ -1,5 +1,55 @@
 {% extends "layout.html" %}{% block title %} Home {% endblock %}
 {% block content %}
+<div>
+  <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <fieldset class="form-group">
+          <div class="form-group">
+              {{ form.place.label(class="form-control-label") }}
+              {% if form.place.errors %}
+                  {{ form.place(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.place.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.place(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+          <div class="form-group">
+              {{ form.location.label(class="form-control-label") }}
+              {% if form.location.errors %}
+                  {{ form.location(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.location.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.location(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+          <div class="form-group">
+              {{ form.desc.label(class="form-control-label") }}
+              {% if form.desc.errors %}
+                  {{ form.desc(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.desc.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{ form.desc(class="form-control form-control-lg") }}
+              {% endif %}
+          </div>
+      </fieldset>
+      <div class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+  </form>
+</div>
+
 <main role="main" class="container">
     <div class="row">
       <div class="col-md-6">
@@ -17,7 +67,7 @@
           {% endfor %}
       </div>
       <div class="col-md-4">
-        <div class="content-section">
+        <div>
           <h3>Profile</h3>
           <p class='text-muted'>This is my profile
             <ul class="list-group">

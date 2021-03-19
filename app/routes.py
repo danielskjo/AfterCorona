@@ -7,29 +7,21 @@ from app.forms import RegisterForm, LoginForm, UpdateProfileForm, PostForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-    {
-        'author': 'Daniel Jo',
-        'place': 'Grand Canyon',
-        'location': 'Arizona',
-        'desc': 'I want to see the Grand Canyon',
-        'created': 'March 16, 2021'
-    },
-    {
-        'author': 'DJ',
-        'place': '63 Building',
-        'location': 'Seoul, Korea',
-        'desc': 'I want to fly and go to Korea',
-        'created': 'March 18, 2021'
-    }
-]
-
-
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     posts = Post.query.all()
-    return render_template('home.html', posts=posts)
+
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(place=form.place.data,
+                    location=form.location.data, desc=form.desc.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Post created', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('home.html', posts=posts, form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -111,20 +103,6 @@ def profile():
     image = url_for(
         'static', filename='profile_pictures/' + current_user.image)
     return render_template('/profile.html', image=image, form=form)
-
-
-@app.route('/post/new', methods=['GET', 'POST'])
-@login_required
-def create_post():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(place=form.place.data,
-                    location=form.location.data, desc=form.desc.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Post created', 'success')
-        return redirect(url_for('home'))
-    return render_template('new_post.html', form=form)
 
 
 @app.route('/post/<int:post_id>')
