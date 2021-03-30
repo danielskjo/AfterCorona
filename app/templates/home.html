@@ -1,5 +1,6 @@
 {% extends "layout.html" %}{% block title %} Home {% endblock %}
 {% block content %}
+{% if current_user.is_authenticated %}
 <div>
   <form method="POST" action="">
       {{ form.hidden_tag() }}
@@ -60,7 +61,7 @@
               <h4 class="card-title"><a href="{{ url_for('post', post_id=post.id) }}">{{ post.place }}</a></h5>
               <h5 class="card-subtitle mb-2 text-muted">{{ post.location }}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{ post.author }}</h6>
-              <h7 class="card-subtitle mb-2 text-muted">{{ post.created.strftime('%Y-%m-%d') }}</h7>
+              <h7 class="card-subtitle mb-2 text-muted">{{ post.created.strftime('%m-%d-%Y') }}</h7>
               <p class="card-text">{{ post.desc }}</p>
             </div>
           </div>
@@ -81,4 +82,10 @@
       </div>
     </div>
   </main>
+{% else %}
+<h1>AfterCorona</h1>
+    <h2>Where Would You Go After the Coronavirus Pandemic?</h2>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}" role='button'>Register</a
+    ><a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role='button'>Login</a>
+{% endif %}
 {% endblock content %}

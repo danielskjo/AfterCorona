@@ -9,16 +9,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route('/')
-@app.route('/onboarding')
-def onboarding():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-
-    return render_template('onboarding.html')
-
-
 @app.route('/home', methods=['GET', 'POST'])
-@login_required
 def home():
     posts = Post.query.all()
 
