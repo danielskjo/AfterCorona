@@ -6,3 +6,17 @@
 .form-item {
     padding-top: 1em;
 }
+
+/* Onboarding */
+.landscape {
+    background-image: url('../static//landscape.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+}
+
+.phrase {
+    color: white;
+    padding-top: 1em;
+    text-align: center;
+}
