@@ -20,3 +20,12 @@
     padding-top: 1em;
     text-align: center;
 }
+
+/* Profile */
+.profile {
+    padding: 1em 20em 5em
+}
+
+.profile-item {
+    padding-top: 1em;
+}

@@ -54,13 +54,13 @@
 <main role="main" class="container">
     <div class="row">
       <div class="col-md-6">
-          {% for post in posts %}
+          {% for post in posts.items %}
           <div class="card">
             <img src="../static/place_images/grandcanyon.jpeg" class="card-img-top" alt="Post image">
             <div class="card-body">
               <h4 class="card-title"><a href="{{ url_for('post', post_id=post.id) }}">{{ post.place }}</a></h5>
               <h5 class="card-subtitle mb-2 text-muted">{{ post.location }}</h6>
-              <h6 class="card-subtitle mb-2 text-muted">{{ post.author.username }}</h6>
+              <h6 class="card-subtitle mb-2 text-muted"><a href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a></h6>
               <h7 class="card-subtitle mb-2 text-muted">{{ post.created.strftime('%m-%d-%Y') }}</h7>
               <p class="card-text">{{ post.desc }}</p>
             </div>
@@ -81,6 +81,17 @@
         </div>
       </div>
     </div>
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+
+        {% endif %}
+    {% endfor %}
   </main>
 {% else %}
 <div class="landscape"><h1 class='phrase'>Where Would You Go After the Coronavirus Pandemic?</h1></div>
