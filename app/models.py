@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask import current_app
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -16,6 +17,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(50), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +29,6 @@ class Post(db.Model):
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     desc = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Post('{self.place}', '{self.location}', '{self.created}')"

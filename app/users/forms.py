@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from flask_login import current_user
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_login import current_user
 from app.models import User
-
 
 class RegisterForm(FlaskForm):
     username = StringField('Username',
@@ -55,10 +54,3 @@ class UpdateProfileForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('Email is taken.')
-
-
-class PostForm(FlaskForm):
-    place = StringField('Place', validators=[DataRequired()])
-    location = StringField('Location', validators=[DataRequired()])
-    desc = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Create Post')
