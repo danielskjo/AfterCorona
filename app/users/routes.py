@@ -22,7 +22,7 @@ def register():
                     email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account created for {form.username.data}', 'success')
+        flash(f'Profile successfully created for {form.username.data}', 'success')
         return redirect(url_for('users.login'))
 
     return render_template('register.html', form=form)

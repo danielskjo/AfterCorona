@@ -14,8 +14,8 @@ content %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
-        {% else %} {{ form.email(class="form-control form-control-lg") }} {%
-        endif %}
+        {% else %} {{ form.email(class="form-control form-control-lg",
+        autocomplete="off") }} {% endif %}
       </div>
       <div class="form-group form-item">
         {{ form.password.label(class="form-control-label") }} {% if
@@ -26,17 +26,18 @@ content %}
           <span>{{ error }}</span>
           {% endfor %}
         </div>
-        {% else %} {{ form.password(class="form-control form-control-lg") }} {%
-        endif %}
+        {% else %} {{ form.password(class="form-control form-control-lg",
+        autocomplete="off") }} {% endif %}
       </div>
     </fieldset>
     <div class="form-group form-item">
       {{ form.submit(class="btn btn-primary") }}
     </div>
+    <br>
   </form>
   <div class="border-top pt-3 form-item">
     <small class="text-muted">
-      Don't Have An Account?
+      Don't Have An Account?<br>
       <a class="ml-2" href="{{ url_for('users.register') }}">Register</a>
     </small>
   </div>
