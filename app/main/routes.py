@@ -23,9 +23,13 @@ def home():
         flash('Post created', 'success')
         return redirect(url_for('main.home'))
 
-    username = current_user.username
-    image = url_for(
-        'static', filename='profile_pictures/' + current_user.image)
+    if current_user.is_authenticated:
+        username = current_user.username
+        image = url_for(
+            'static', filename='profile_pictures/' + current_user.image)
+    else:
+        username = ''
+        image = ''
 
     return render_template('home.html', posts=posts, form=form, username=username, image=image)
 
