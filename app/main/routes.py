@@ -23,6 +23,10 @@ def home():
         flash('Post created', 'success')
         return redirect(url_for('main.home'))
 
-    return render_template('home.html', posts=posts, form=form)
+    username = current_user.username
+    image = url_for(
+        'static', filename='profile_pictures/' + current_user.image)
+
+    return render_template('home.html', posts=posts, form=form, username=username, image=image)
 
 

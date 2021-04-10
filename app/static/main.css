@@ -1,31 +1,38 @@
 /* Form */
 .form {
-    padding: 1em 20em 5em
+  padding: 1em 20em 5em;
 }
 
 .form-item {
-    padding-top: 1em;
+  padding-top: 1em;
 }
 
 /* Onboarding */
 .landscape {
-    background-image: url('../static//landscape.jpeg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 100vh;
+  background-image: url("../static//landscape.jpeg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
 }
 
 .phrase {
-    color: white;
-    padding-top: 1em;
-    text-align: center;
+  color: white;
+  padding-top: 1em;
+  text-align: center;
 }
 
 /* Profile */
 .profile {
-    padding: 1em 20em 5em
+  padding: 1em 20em 5em;
 }
 
 .profile-item {
-    padding-top: 1em;
+  padding-top: 1em;
+}
+
+.profile-pic {
+  vertical-align: middle;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
 }
