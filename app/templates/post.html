@@ -6,13 +6,13 @@
   />
   <div class="media-body">
     <div>
-      <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+      <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
       <small class="text-muted">{{ post.created.strftime('%Y-%m-%d') }}</small>
       {% if post.author == current_user %}
       <div>
         <a
           class="btn btn-secondary btn-sm mt-1 mb-1"
-          href="{{ url_for('posts.update_post', post_id=post.id) }}"
+          href="{{ url_for('update_post', post_id=post.id) }}"
           >Update</a
         >
         <button
@@ -59,7 +59,7 @@
           Close
         </button>
         <form
-          action="{{ url_for('posts.delete_post', post_id=post.id) }}"
+          action="{{ url_for('delete_post', post_id=post.id) }}"
           method="POST"
         >
           <input class="btn btn-danger" type="submit" value="Delete" />
