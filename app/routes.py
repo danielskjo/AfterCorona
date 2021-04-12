@@ -8,6 +8,21 @@ from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
+def save_image(form_image):
+    random_hex = secrets.token_hex(8)
+    _, file_extension = os.path.splitext(form_image.filename)
+    image_filename = random_hex + file_extension
+    image_path = os.path.join(
+        app.root_path, 'static/profile_pictures/' + image_filename)
+
+    output_size = (125, 125)
+    i = Image.open(form_image)
+    i.thumbnail(output_size)
+    i.save(image_path)
+
+    return image_filename
+
+
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def home():
@@ -36,6 +51,7 @@ def home():
     return render_template('home.html', posts=posts, form=form, username=username, image=image)
 
 
+# User Routes
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -80,20 +96,7 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-
-def save_image(form_image):
-    random_hex = secrets.token_hex(8)
-    _, file_extension = os.path.splitext(form_image.filename)
-    image_filename = random_hex + file_extension
-    image_path = os.path.join(
-        app.root_path, 'static/profile_pictures/' + image_filename)
-
-    output_size = (125, 125)
-    i = Image.open(form_image)
-    i.thumbnail(output_size)
-    i.save(image_path)
-
-    return image_filename
+# Profile
 
 
 @app.route('/profile', methods=['GET', 'POST'])
@@ -115,6 +118,8 @@ def profile():
     image = url_for(
         'static', filename='profile_pictures/' + current_user.image)
     return render_template('/profile.html', image=image, form=form)
+
+# Post Routes
 
 
 @app.route('/post/<int:post_id>')
@@ -167,6 +172,7 @@ def user_posts(username):
     return render_template('user_posts.html', posts=posts, user=user)
 
 
+# Error handlers
 @app.errorhandler(404)
 def error_404(error):
     return render_template('errors/404.html'), 404
