@@ -7,8 +7,8 @@ from app.models import User
 
 
 class RegisterForm(FlaskForm):
-    # image = FileField('Add Image', validators=[
-    #                   FileAllowed(['jpg', 'jpeg', 'png'])])
+    image = FileField('Add Image', validators=[
+                      FileAllowed(['jpg', 'jpeg', 'png'])])
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',

@@ -65,11 +65,29 @@ def register():
         user = User(username=form.username.data,
                     email=form.email.data, password=hashed_password)
         db.session.add(user)
+        if form.image.data:
+            user.image = save_image(form.image.data)
         db.session.commit()
         flash(f'Account created for {form.username.data}', 'success')
         return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
+
+    # if form.validate_on_submit():
+    #     if form.image.data:
+    #         image_file = save_image(form.image.data)
+    #         current_user.image = image_file
+    #     current_user.username = form.username.data
+    #     current_user.email = form.email.data
+    #     db.session.commit()
+    #     flash('Profile updated successfully', 'success')
+    #     return redirect(url_for('profile'))
+    # elif request.method == 'GET':
+    #     form.username.data = current_user.username
+    #     form.email.data = current_user.email
+    # image = url_for(
+    #     'static', filename='profile_pictures/' + current_user.image)
+    # return render_template('/profile.html', image=image, form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
