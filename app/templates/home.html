@@ -52,8 +52,7 @@
 </div>
 
 <main role="main" class="container">
-    <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-7 posts">
           {% for post in posts.items %}
           <div class="card">
             <img src="../static/place_images/grandcanyon.jpeg" class="card-img-top" alt="Post image">
@@ -67,21 +66,7 @@
           </div>
           {% endfor %}
       </div>
-      <div class="col-md-3">
-        <div>
-          <h3>Welcome {{ username }}!</h3>
-          <img class="rounded-circle profile-pic" src="{{ image }}">
-          <p class='text-muted'>Your most recent posts
-            <ul class="list-group">
-              <li class="list-group-item list-group-item-light">1</li>
-              <li class="list-group-item list-group-item-light">2</li>
-              <li class="list-group-item list-group-item-light">3</li>
-              <li class="list-group-item list-group-item-light">4</li>
-            </ul>
-          </p>
-        </div>
-      </div>
-    </div>
+      <div>
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
@@ -93,6 +78,7 @@
 
         {% endif %}
     {% endfor %}
+</div>
   </main>
 {% else %}
 <div class="landscape"><h1 class='phrase'>Where Would You Go After the Coronavirus Pandemic?</h1></div>

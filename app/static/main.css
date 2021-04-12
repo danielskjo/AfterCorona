@@ -23,6 +23,11 @@
   text-align: center;
 }
 
+/* Home */
+.posts {
+  margin: auto;
+}
+
 /* Profile */
 .profile {
   padding: 1em 20em 5em;
