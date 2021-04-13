@@ -46,7 +46,7 @@
           </div>
       </fieldset>
       <div class="form-group form-item">
-          {{ form.submit(class="btn btn-outline-info") }}
+          {{ form.submit(class="btn btn-primary") }}
       </div>
   </form>
 </div>
@@ -54,7 +54,7 @@
 <main role="main" class="container">
       <div class="col-md-7 posts">
           {% for post in posts.items %}
-          <div class="card">
+          <div class="card post">
             <img src="../static/place_images/grandcanyon.jpeg" class="card-img-top" alt="Post image">
             <div class="card-body">
               <h4 class="card-title"><a href="{{ url_for('post', post_id=post.id) }}">{{ post.place }}</a></h5>
@@ -70,9 +70,9 @@
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
             {% if posts.page == page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                <a class="btn btn-primary mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
             {% else %}
-                <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+                <a class="btn btn-outline-primary mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
             {% endif %}
         {% else %}
 

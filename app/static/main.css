@@ -28,6 +28,11 @@
   margin: auto;
 }
 
+.post {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Profile */
 .profile {
   padding: 1em 20em 5em;
