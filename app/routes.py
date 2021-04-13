@@ -8,7 +8,7 @@ from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-def save_image(form_image):
+def save_pfp(form_image):
     random_hex = secrets.token_hex(8)
     _, file_extension = os.path.splitext(form_image.filename)
     image_filename = random_hex + file_extension
@@ -23,6 +23,20 @@ def save_image(form_image):
     return image_filename
 
 
+def save_place(form_image):
+    random_hex = secrets.token_hex(8)
+    _, file_extension = os.path.splitext(form_image.filename)
+    image_filename = random_hex + file_extension
+    image_path = os.path.join(
+        app.root_path, 'static/place_images/' + image_filename)
+
+    output_size = (1920, 1080)
+    i = Image.open(form_image)
+    i.thumbnail(output_size)
+    i.save(image_path)
+
+    return image_filename
+
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def home():
@@ -33,7 +47,7 @@ def home():
 
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(place=form.place.data,
+        post = Post(image=save_place(form.image.data), place=form.place.data,
                     location=form.location.data, desc=form.desc.data, author=current_user)
         db.session.add(post)
         db.session.commit()
@@ -97,7 +111,7 @@ def profile():
     form = UpdateProfileForm()
     if form.validate_on_submit():
         if form.image.data:
-            image_file = save_image(form.image.data)
+            image_file = save_pfp(form.image.data)
             current_user.image = image_file
         current_user.username = form.username.data
         current_user.email = form.email.data

@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.String(50))
+    image = db.Column(db.String(50), nullable=False)
     place = db.Column(db.String(30), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)

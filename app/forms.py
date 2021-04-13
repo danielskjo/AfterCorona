@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
@@ -57,8 +57,8 @@ class UpdateProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    # image = FileField('Add Image', validators=[
-    #                   FileAllowed(['jpg', 'jpeg', 'png'])])
+    image = FileField('Add Image', validators=[FileRequired(),
+                                               FileAllowed(['jpg', 'jpeg', 'png'])])
     place = StringField('Place', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     desc = TextAreaField('Description', validators=[DataRequired()])
