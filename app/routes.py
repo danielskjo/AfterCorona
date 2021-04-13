@@ -57,8 +57,6 @@ def register():
         user = User(username=form.username.data,
                     email=form.email.data, password=hashed_password)
         db.session.add(user)
-        if form.image.data:
-            user.image = save_image(form.image.data)
         db.session.commit()
         flash(f'Account created for {form.username.data}', 'success')
         return redirect(url_for('login'))
