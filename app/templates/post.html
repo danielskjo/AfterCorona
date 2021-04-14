@@ -1,11 +1,12 @@
 {% extends "layout.html" %} {% block content %}
 <article>
   <img
-    class="rounded-circle card-img-top"
-    src="../static/place_images/grandcanyon.jpeg"
+    class="card-img-top"
+    src="{{ url_for(
+      'static', filename='place_images/' + post.image) }}"
   />
   <div class="media-body">
-    <div>
+    <div class="article-metadata">
       <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
       <small class="text-muted">{{ post.created.strftime('%Y-%m-%d') }}</small>
       {% if post.author == current_user %}
