@@ -1,4 +1,4 @@
-{% extends "layout.html" %}{% block title %} Home {% endblock %}
+{% extends "layout.html" %}{% block title %} {{ user.username }} {% endblock %}
 {% block content %}
 <main role="main" class="container">
     <h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h1>
