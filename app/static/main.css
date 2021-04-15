@@ -1,8 +1,8 @@
-/* Form */
-.form {
+.content {
   padding: 1em 20em 5em;
 }
 
+/* Form */
 .form-item {
   padding-top: 1em;
 }
@@ -34,10 +34,6 @@
 }
 
 /* Profile */
-.profile {
-  padding: 1em 20em 5em;
-}
-
 .profile-item {
   padding-top: 1em;
 }
