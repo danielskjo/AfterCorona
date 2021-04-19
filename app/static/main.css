@@ -2,11 +2,6 @@
   padding: 1em 20em 5em;
 }
 
-/* Form */
-.form-item {
-  padding-top: 1em;
-}
-
 /* Onboarding */
 .landscape {
   background-image: url("../static//landscape.jpeg");
