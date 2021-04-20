@@ -56,10 +56,18 @@ class UpdateProfileForm(FlaskForm):
                 raise ValidationError('Email is taken.')
 
 
-class PostForm(FlaskForm):
+class CreatePostForm(FlaskForm):
     image = FileField('Add Image', validators=[FileRequired(),
                                                FileAllowed(['jpg', 'jpeg', 'png'])])
     place = StringField('Place', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     desc = TextAreaField('Description', validators=[DataRequired()])
     submit = SubmitField('Create Post')
+
+class UpdatePostForm(FlaskForm):
+    image = FileField('Add Image', validators=[
+                                               FileAllowed(['jpg', 'jpeg', 'png'])])
+    place = StringField('Place', validators=[DataRequired()])
+    location = StringField('Location', validators=[DataRequired()])
+    desc = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Update Post')

@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
-from app.forms import RegisterForm, LoginForm, UpdateProfileForm, PostForm
+from app.forms import RegisterForm, LoginForm, UpdateProfileForm, CreatePostForm, UpdatePostForm
 from app.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -45,7 +45,7 @@ def home():
     posts = Post.query.order_by(
         Post.created.desc()).paginate(page=page, per_page=5)
 
-    form = PostForm()
+    form = CreatePostForm()
     if form.validate_on_submit():
         post = Post(image=save_place(form.image.data), place=form.place.data,
                     location=form.location.data, desc=form.desc.data, author=current_user)
@@ -140,7 +140,7 @@ def update_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
-    form = PostForm()
+    form = UpdatePostForm()
     if form.validate_on_submit():
         post.place = form.place.data
         post.location = form.location.data
