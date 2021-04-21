@@ -1,7 +1,7 @@
 {% extends "layout.html" %}{% block title %} {{ user.username }} {% endblock %}
 {% block content %}
 <main role="main" class="container">
-    <h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h1>
+    <h1 class="mb-3 text-center">Posts by {{ user.username }} ({{ posts.total }})</h1>
     <div class="col-md-7 posts">
       {% for post in posts.items %}
       <div class="card post">
@@ -17,13 +17,13 @@
       </div>
       {% endfor %}
   </div>
-  <div>
+  <div class="text-center">
 {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {% if page_num %}
         {% if posts.page == page_num %}
-            <a class="btn btn-primary mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-primary mb-4" href="{{ url_for('user_posts', page=page_num, username=user.username) }}">{{ page_num }}</a>
         {% else %}
-            <a class="btn btn-outline-primary mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-outline-primary mb-4" href="{{ url_for('user_posts', page=page_num, username=user.username) }}">{{ page_num }}</a>
         {% endif %}
     {% endif %}
 {% endfor %}

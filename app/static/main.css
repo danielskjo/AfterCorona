@@ -1,5 +1,5 @@
 .content {
-  padding: 1em 20em 5em;
+  padding: 1em 10em;
 }
 
 /* Onboarding */
@@ -29,10 +29,6 @@
 }
 
 /* Profile */
-.profile-item {
-  padding-top: 1em;
-}
-
 .profile-pic {
   vertical-align: middle;
   width: 20em;

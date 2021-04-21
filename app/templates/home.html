@@ -1,7 +1,7 @@
 {% extends "layout.html" %}{% block title %} Home {% endblock %}
 {% block content %}
 {% if current_user.is_authenticated %}
-<div class="content">
+<div class="content container">
   <form method="POST" action="" enctype="multipart/form-data">
       {{ form.hidden_tag() }}
       <fieldset class="form-group">
@@ -76,7 +76,7 @@
         </div>
         {% endfor %}
     </div>
-    <div>
+    <div class="text-center">
   {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
           {% if posts.page == page_num %}
