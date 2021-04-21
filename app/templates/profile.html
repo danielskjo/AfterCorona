@@ -1,7 +1,7 @@
 {% extends 'layout.html' %} {% block title %} Profile {% endblock %}{% block content %}
 <div class="content container">
   <div class="media">
-    <img class="rounded-circle profile-pic" src="{{ image }}">
+    <img class="rounded-circle img-fluid profile-pic" src="{{ image }}">
   </div>
   <form method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
